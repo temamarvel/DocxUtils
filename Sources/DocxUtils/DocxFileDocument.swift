@@ -9,10 +9,10 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct DocxFileDocument: FileDocument {
+public struct DocxFileDocument: FileDocument {
     // Для exporter важнее writableContentTypes
-    static var writableContentTypes: [UTType] { [.docxSafe] }
-    static var readableContentTypes: [UTType] { [.docxSafe, .data] } // можно и так
+    public static var writableContentTypes: [UTType] { [.docxSafe] }
+    public static var readableContentTypes: [UTType] { [.docxSafe, .data] } // можно и так
     
     var data: Data
     
@@ -20,11 +20,11 @@ struct DocxFileDocument: FileDocument {
         self.data = try Data(contentsOf: fileURL)
     }
     
-    init(configuration: ReadConfiguration) throws {
+    public init(configuration: ReadConfiguration) throws {
         self.data = configuration.file.regularFileContents ?? Data()
     }
     
-    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+    public func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         FileWrapper(regularFileWithContents: data)
     }
 }
