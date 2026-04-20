@@ -16,7 +16,7 @@ public struct DocxFileDocument: FileDocument {
     
     var data: Data
     
-    init(fileURL: URL) throws {
+    public init(fileURL: URL) throws {
         self.data = try Data(contentsOf: fileURL)
     }
     
